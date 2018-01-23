@@ -61,5 +61,32 @@ public class DbCreateTable {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/***********************************************************************
+	 * this table has an extra feature and that is the auto increment field.
+	 ***********************************************************************/
+	public static void createTable3() {
+
+		try {
+			StringBuilder sql = new StringBuilder();
+			sql.append("CREATE TABLE IF NOT EXISTS Person(");
+			sql.append("id INTEGER auto_increment, ");
+			sql.append("first VARCHAR(255), ");
+			sql.append("last VARCHAR(255), ");
+			sql.append("age INTEGER, ");
+			sql.append("PRIMARY KEY(id))");
+
+			Connection conn = DbGetConnection.getDatabaseConnection2();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(sql.toString());
+			System.out.println("Created table in given database...");
+
+			stmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
